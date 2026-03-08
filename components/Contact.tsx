@@ -26,7 +26,7 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto">
 
         {/* Heading */}
-        <div className="reveal text-center mb-10">
+        <div className="reveal mb-3">
           <h2
             className="font-display uppercase leading-none text-zinc-900"
             style={{ fontSize: "clamp(56px, 9vw, 100px)" }}
@@ -34,9 +34,13 @@ export default function Contact() {
             CONTACT
           </h2>
         </div>
+        <div className="reveal reveal-delay-1 flex items-center gap-3 mb-8">
+          <p className="text-xs text-zinc-400 tracking-widest uppercase shrink-0">Get in touch</p>
+          <div className="flex-1 h-px bg-zinc-200" aria-hidden="true" />
+        </div>
 
         {/* Intro text */}
-        <div className="reveal reveal-delay-1 text-sm text-zinc-600 leading-relaxed mb-8 space-y-1">
+        <div className="reveal reveal-delay-2 text-sm text-zinc-600 leading-relaxed mb-8 space-y-1">
           <p>お仕事のご依頼やご相談は以下のフォームよりお気軽にご連絡ください。</p>
           <p>
             3営業日以内にお返事申し上げます。3営業日を過ぎても返事がない場合は、
@@ -67,8 +71,8 @@ export default function Contact() {
                 required
                 autoComplete="name"
                 placeholder="姓　名"
-                className={`w-full px-4 py-3 bg-transparent border text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-200 ${
-                  state.fieldErrors?.name ? "border-red-400" : "border-zinc-300"
+                className={`w-full px-0 py-3 bg-transparent border-b text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-200 ${
+                  state.fieldErrors?.name ? "border-red-400" : "border-zinc-200 focus:border-zinc-900"
                 }`}
               />
               {state.fieldErrors?.name && (
@@ -90,8 +94,8 @@ export default function Contact() {
                 required
                 autoComplete="email"
                 placeholder="○○@example.com"
-                className={`w-full px-4 py-3 bg-transparent border text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-200 ${
-                  state.fieldErrors?.email ? "border-red-400" : "border-zinc-300"
+                className={`w-full px-0 py-3 bg-transparent border-b text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-200 ${
+                  state.fieldErrors?.email ? "border-red-400" : "border-zinc-200 focus:border-zinc-900"
                 }`}
               />
               {state.fieldErrors?.email && (
@@ -112,8 +116,8 @@ export default function Contact() {
                 required
                 rows={5}
                 placeholder="具体的な制作物や詳細をご記入ください"
-                className={`w-full px-4 py-3 bg-transparent border text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-200 resize-none ${
-                  state.fieldErrors?.message ? "border-red-400" : "border-zinc-300"
+                className={`w-full px-0 py-3 bg-transparent border-b text-sm text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-200 resize-none ${
+                  state.fieldErrors?.message ? "border-red-400" : "border-zinc-200 focus:border-zinc-900"
                 }`}
               />
               {state.fieldErrors?.message && (
@@ -140,7 +144,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={pending}
-              className="w-full py-4 bg-zinc-900 text-white font-medium text-sm tracking-widest uppercase hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer flex items-center justify-center gap-3"
+              className="btn-shimmer w-full py-4 bg-zinc-900 text-white font-medium text-sm tracking-widest uppercase hover:bg-zinc-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer flex items-center justify-center gap-3"
             >
               {pending ? (
                 <>

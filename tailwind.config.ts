@@ -24,6 +24,7 @@ const config: Config = {
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",
         "fade-up": "fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "marquee": "marquee 32s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -33,6 +34,10 @@ const config: Config = {
         fadeUp: {
           from: { opacity: "0", transform: "translateY(24px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
     },
