@@ -259,18 +259,18 @@ export default function WorksPage() {
             className="grid gap-3 mb-8"
             style={{ gridTemplateColumns: "5fr 7fr", height: "340px" }}
           >
-            <div className="reveal relative overflow-hidden bg-zinc-200">
+            <div className="reveal relative overflow-hidden skeleton">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://picsum.photos/seed/hero-aa/500/700" alt="制作実績" className="w-full h-full object-cover" />
+              <img src="https://picsum.photos/seed/hero-aa/500/700" alt="制作実績" className="w-full h-full object-cover" onLoad={(e) => (e.currentTarget.parentElement as HTMLElement).classList.remove("skeleton")} />
               <div className="absolute bottom-4 left-4">
                 <span className="text-[10px] text-white/70 bg-black/30 backdrop-blur-sm px-3 py-1.5 tracking-[0.2em] uppercase">
                   Design
                 </span>
               </div>
             </div>
-            <div className="reveal reveal-delay-1 relative overflow-hidden bg-zinc-200">
+            <div className="reveal reveal-delay-1 relative overflow-hidden skeleton">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://picsum.photos/seed/hero-bb/800/400" alt="制作実績" className="w-full h-full object-cover" />
+              <img src="https://picsum.photos/seed/hero-bb/800/400" alt="制作実績" className="w-full h-full object-cover" onLoad={(e) => (e.currentTarget.parentElement as HTMLElement).classList.remove("skeleton")} />
               <div className="absolute bottom-4 right-4">
                 <span className="text-[10px] text-white/70 bg-black/30 backdrop-blur-sm px-3 py-1.5 tracking-[0.2em] uppercase">
                   Development
@@ -327,7 +327,7 @@ export default function WorksPage() {
                   </div>
 
                   {/* Browser screen: actual project image */}
-                  <div className="aspect-[16/9] overflow-hidden relative bg-zinc-200">
+                  <div className="aspect-[16/9] overflow-hidden relative skeleton">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       key={`desktop-${previewProject.id}`}
@@ -429,12 +429,13 @@ export default function WorksPage() {
                 aria-label={`${project.title} の詳細を見る`}
               >
                 {/* Card image with overlays */}
-                <div className="relative overflow-hidden aspect-[4/3] mb-3 bg-zinc-200">
+                <div className="relative overflow-hidden aspect-[4/3] mb-3 skeleton">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    onLoad={(e) => (e.currentTarget.parentElement as HTMLElement).classList.remove("skeleton")}
                   />
 
                   {/* Project number — visible always, fades on hover */}

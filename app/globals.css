@@ -143,6 +143,18 @@ body::before {
   animation: slideInFromLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Skeleton loading */
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e8e7e5 25%, #d5d4d1 50%, #e8e7e5 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
