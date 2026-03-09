@@ -105,14 +105,15 @@ function ProjectModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={project.title}
     >
+      <div className="flex min-h-full items-center justify-center p-4 md:p-8">
       <div
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-canvas shadow-2xl animate-fade-up"
+        className="relative w-full max-w-2xl bg-canvas shadow-2xl animate-fade-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -183,6 +184,7 @@ function ProjectModal({
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
