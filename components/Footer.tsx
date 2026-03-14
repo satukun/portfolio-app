@@ -7,7 +7,7 @@ export default function Footer() {
           ©{year} PORTFOLIO
           <span className="mx-2 text-zinc-300" aria-hidden="true">•</span>
           <a
-            href="#"
+            href="/privacy"
             className="hover:text-zinc-700 transition-colors duration-200 cursor-pointer"
           >
             PRIVACY POLICY
