@@ -3,8 +3,8 @@ import { ALL_NEWS } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "News | Your Name Portfolio",
-  description: "お知らせ・実績一覧",
+  title: "News | YO.Tec Portfolio",
+  description: "YO.Tecのお知らせ・実績一覧",
 };
 
 export default function NewsPage() {

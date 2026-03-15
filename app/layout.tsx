@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Your Name | Frontend Engineer",
+  title: "YO.Tec | Frontend Engineer Portfolio",
   description:
-    "フロントエンドエンジニア兼ディレクター。React・Next.jsを軸に、業界15年以上の経験でWebアプリ・サイト制作を提供。",
+    "YO.Tecのポートフォリオサイト。フロントエンドエンジニア兼ディレクター。React・Next.jsを軸に、業界15年以上の経験でWebアプリ・サイト制作を提供。",
   openGraph: {
-    title: "Your Name | Frontend Engineer",
+    title: "YO.Tec | Frontend Engineer Portfolio",
     description:
-      "フロントエンドエンジニア兼ディレクター。React・Next.jsを軸に、業界15年以上の経験でWebアプリ・サイト制作を提供。",
+      "YO.Tecのポートフォリオサイト。フロントエンドエンジニア兼ディレクター。React・Next.jsを軸に、業界15年以上の経験でWebアプリ・サイト制作を提供。",
     type: "website",
   },
 };

@@ -13,7 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const project = ALL_PROJECTS.find((p) => p.id === id);
   return {
-    title: project ? `${project.title} | Portfolio` : "Not Found",
+    title: project ? `${project.title} | YO.Tec Portfolio` : "Not Found",
+    description: project ? project.description : undefined,
   };
 }
 

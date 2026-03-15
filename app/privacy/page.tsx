@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Your Name Portfolio",
-  description: "プライバシーポリシー",
+  title: "Privacy Policy | YO.Tec Portfolio",
+  description: "YO.Tecポートフォリオサイトのプライバシーポリシー",
 };
 
 export default function PrivacyPage() {
