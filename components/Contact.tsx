@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useActionState } from "react";
-import { sendContact, type ContactState } from "@/app/actions/contact";
+import { sendContact, type ContactState, RESPONSE_DAYS } from "@/app/actions/contact";
 
 const initialState: ContactState = {};
 
@@ -43,7 +43,7 @@ export default function Contact() {
         <div className="reveal reveal-delay-2 text-sm text-zinc-600 leading-relaxed mb-8 space-y-1">
           <p>お仕事のご依頼やご相談は以下のフォームよりお気軽にご連絡ください。</p>
           <p>
-            3営業日以内にお返事申し上げます。3営業日を過ぎても返事がない場合は、
+            {RESPONSE_DAYS}営業日以内にお返事申し上げます。{RESPONSE_DAYS}営業日を過ぎても返事がない場合は、
             お手数ですが再度フォームよりお問い合わせください。
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function Contact() {
             <p className="font-heading font-semibold text-xl text-zinc-900 mb-2">
               送信完了しました
             </p>
-            <p className="text-sm text-zinc-500">2営業日以内にご連絡します。</p>
+            <p className="text-sm text-zinc-500">{RESPONSE_DAYS}営業日以内にご連絡します。</p>
           </div>
         ) : (
           <form action={formAction} className="reveal reveal-delay-2 flex flex-col gap-6">
@@ -128,16 +128,25 @@ export default function Contact() {
             </div>
 
             {/* Privacy checkbox */}
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id="privacy"
-                required
-                className="w-4 h-4 border-zinc-400 cursor-pointer accent-zinc-900"
-              />
-              <label htmlFor="privacy" className="text-xs text-zinc-500 cursor-pointer">
-                個人情報の取り扱いについて同意する
-              </label>
+            <div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="privacy"
+                  value="1"
+                  required
+                  className="w-4 h-4 border-zinc-400 cursor-pointer accent-zinc-900"
+                />
+                <label htmlFor="privacy" className="text-xs text-zinc-500 cursor-pointer">
+                  個人情報の取り扱いについて同意する
+                </label>
+              </div>
+              {state.fieldErrors?.privacy && (
+                <p className="mt-1 text-xs text-red-500" role="alert">
+                  {state.fieldErrors.privacy}
+                </p>
+              )}
             </div>
 
             {/* Submit */}

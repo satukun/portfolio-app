@@ -1,3 +1,83 @@
+export type FreelanceProject = {
+  id: string;
+  category: string;
+  period: string;
+  title: string;
+  client: string;
+  description: string;
+  tech: string[];
+  type: string;
+};
+
+export const FREELANCE_PROJECTS: FreelanceProject[] = [
+  {
+    id: "01",
+    category: "Webサイト開発",
+    period: "2025.7 — 9",
+    title: "地震保険普及啓発サイト 全面リニューアル",
+    client: "日本損害保険協会",
+    description:
+      "47都道府県ページの自動生成システムをJSONデータ駆動+EJSで構築。22行の記述を7行に短縮し運用効率を大幅改善。チームリード（3名体制）。",
+    tech: ["EJS", "SCSS", "Gulp", "JavaScript"],
+    type: "toB",
+  },
+  {
+    id: "02",
+    category: "Webアプリ開発",
+    period: "2025.4 — 7",
+    title: "高級時計販売店 Next.js 移行・統合システム",
+    client: "watch-yoshida.co.jp",
+    description:
+      "PHP/HTMLレガシーサイト（200+ページ・1,000+画像）のNext.js移行基盤を構築。ファイル自動検出・変換システムで大量コンテンツを効率移行。",
+    tech: ["Next.js", "TypeScript", "CSS Modules", "Vercel"],
+    type: "toB",
+  },
+  {
+    id: "03",
+    category: "Webアプリ / PWA",
+    period: "2024.12 — 2025.2",
+    title: "マラソンイベント 写真撮影・管理システム",
+    client: "個人開発",
+    description:
+      "参加者管理〜リアルタイム撮影を統合したPWA。WebRTC APIでカメラ制御、Supabase でDB管理、多言語対応。参加者検索時間を90%短縮（30秒→3秒）。",
+    tech: ["Next.js", "Supabase", "PWA", "WebRTC API"],
+    type: "toB",
+  },
+  {
+    id: "04",
+    category: "Webアプリ開発",
+    period: "2023.6 — 2023.10",
+    title: "暗号資産・ブロックチェーンサービス開発",
+    client: "mercoin.com",
+    description:
+      "カスタマーサポート向けダッシュボードの改修・機能追加。Cypress E2Eテスト導入で既存機能リファクタリングの品質を担保。週4日稼働。",
+    tech: ["Next.js", "Storybook", "Cypress", "GitHub"],
+    type: "toB",
+  },
+  {
+    id: "05",
+    category: "Webアプリ開発",
+    period: "2021.1 — 2021.10",
+    title: "オンラインホワイトボード サービス開発",
+    client: "strap.app",
+    description:
+      "新規ダッシュボード実装・グラフ改修・機能追加。Redux × TypeScriptで状態管理を整備。スプリントレビューのデモシナリオ作成まで担当。",
+    tech: ["React", "TypeScript", "Redux", "pixi.js"],
+    type: "toB",
+  },
+  {
+    id: "06",
+    category: "Webアプリ開発",
+    period: "2019.12 — 2020.11",
+    title: "大手製造業 ECサイト 機能開発・改修",
+    client: "misumi-ec.com",
+    description:
+      "商品一覧・カート・注文確認画面の改修・API繋ぎ込み・多言語対応。Jest / Storybook / BackstopJS によるテスト体制を構築し品質向上に貢献。",
+    tech: ["React", "Next.js", "Redux", "BackstopJS"],
+    type: "toB",
+  },
+];
+
 export type Project = {
   id: string;
   title: string;

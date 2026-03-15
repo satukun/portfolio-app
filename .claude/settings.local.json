@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills:*)",
+      "Bash(python /Users/mac/.claude/plugins/cache/anthropic-agent-skills/example-skills/1ed29a03dc85/skills/webapp-testing/scripts/with_server.py --help 2>&1)",
+      "Bash(python3 /Users/mac/.claude/plugins/cache/anthropic-agent-skills/example-skills/1ed29a03dc85/skills/webapp-testing/scripts/with_server.py --help 2>&1)",
+      "Bash(python3 /Users/mac/.claude/plugins/cache/anthropic-agent-skills/example-skills/1ed29a03dc85/skills/webapp-testing/scripts/with_server.py \\\\\n  --server \"npm run dev\" \\\\\n  --port 3000 \\\\\n  -- python3 /tmp/portfolio_test.py 2>&1)",
+      "Bash(pip3 install:*)",
+      "Bash(grep -r \"YO.Tec\\\\|ITコンサル\\\\|Home.*About.*Services\" /Users/YOT/portfolio-app --include=\"*.tsx\" --include=\"*.ts\" -l 2>/dev/null | grep -v node_modules | grep -v .next)",
+      "Bash(grep -r \"YO.Tec\" /Users/YOT/portfolio-app --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.js\" --include=\"*.jsx\" --include=\"*.json\" -l 2>/dev/null | grep -v node_modules | grep -v \".next\")",
+      "Bash(cat > /tmp/portfolio_final_test.py << 'EOF'\nfrom playwright.sync_api import sync_playwright\n\nresults = []\nerrors = []\n\nwith sync_playwright\\(\\) as p:\n    browser = p.chromium.launch\\(headless=True\\)\n\n    # --- トップページ ---\n    page = browser.new_page\\(\\)\n    page.on\\(\"console\", lambda m: errors.append\\(f\"[TOP] {m.text}\"\\) if m.type == \"error\" else None\\)\n    page.goto\\('http://localhost:3002'\\)\n    page.wait_for_load_state\\('networkidle'\\)\n    page.screenshot\\(path='/tmp/ss_top.png', full_page=True\\)\n\n    links = [\\(l.inner_text\\(\\).strip\\(\\), l.get_attribute\\('href'\\)\\) for l in page.locator\\('a'\\).all\\(\\)]\n    privacy_link = next\\(\\(href for text, href in links if 'PRIVACY' in text.upper\\(\\)\\), None\\)\n    results.append\\(f\"{'[OK]' if privacy_link == '/privacy' else '[NG]'} PRIVACY POLICY リンク: {privacy_link}\"\\)\n\n    # --- プライバシーページ ---\n    page2 = browser.new_page\\(\\)\n    page2.on\\(\"console\", lambda m: errors.append\\(f\"[PRIVACY] {m.text}\"\\) if m.type == \"error\" else None\\)\n    page2.goto\\('http://localhost:3002/privacy'\\)\n    page2.wait_for_load_state\\('networkidle'\\)\n    page2.screenshot\\(path='/tmp/ss_privacy.png', full_page=True\\)\n    status = page2.evaluate\\(\"\\(\\) => document.title\"\\)\n    results.append\\(f\"[OK] プライバシーページ タイトル: {status}\"\\)\n\n    back_link = page2.locator\\('a:has-text\\(\"BACK\"\\)'\\).first\n    results.append\\(f\"{'[OK]' if back_link.count\\(\\) > 0 else '[NG]'} BACKリンク存在\"\\)\n\n    # --- /news ページ ---\n    page3 = browser.new_page\\(\\)\n    page3.on\\(\"console\", lambda m: errors.append\\(f\"[NEWS] {m.text}\"\\) if m.type == \"error\" else None\\)\n    page3.goto\\('http://localhost:3002/news'\\)\n    page3.wait_for_load_state\\('networkidle'\\)\n    page3.screenshot\\(path='/tmp/ss_news.png'\\)\n    results.append\\(f\"[OK] Newsページ タイトル: {page3.title\\(\\)}\"\\)\n\n    results.append\\(f\"[{'OK' if not errors else 'WARN'}] コンソールエラー: {'なし' if not errors else str\\(errors\\)}\"\\)\n\n    browser.close\\(\\)\n\nfor r in results:\n    print\\(r\\)\nEOF\n\npython3 /Users/mac/.claude/plugins/cache/anthropic-agent-skills/example-skills/1ed29a03dc85/skills/webapp-testing/scripts/with_server.py \\\\\n  --server \"npm run dev -- -p 3002\" \\\\\n  --port 3002 \\\\\n  --timeout 60 \\\\\n  -- python3 /tmp/portfolio_final_test.py 2>&1)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(npm run:*)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel login:*)",
+      "Bash(vercel link:*)",
+      "Bash(sleep 8 && vercel ls --format json 2>/dev/null | head -100)",
+      "Bash(vercel ls:*)",
+      "Bash(vercel inspect:*)",
+      "Bash(vercel deploy:*)",
+      "Bash(bash ~/.claude/skills/review-pr/scripts/detect_base.sh)",
+      "Bash(gh repo:*)",
+      "Bash(git checkout:*)",
+      "Bash(gh label:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
