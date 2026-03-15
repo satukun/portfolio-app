@@ -244,7 +244,7 @@ export default function WorksPage() {
                 className="font-display uppercase leading-none text-zinc-900"
                 style={{ fontSize: "clamp(48px, 7.5vw, 96px)" }}
               >
-                PORTFOLIO.
+                YO.Tec PORTFOLIO.
               </h2>
             </div>
             <p className="text-sm text-zinc-500 max-w-xs leading-relaxed lg:mb-2 lg:text-right">
