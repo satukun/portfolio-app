@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CAREER_TIMELINE } from "@/lib/data";
+import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata: Metadata = {
   title: "About — YO.TEC Portfolio",
@@ -11,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-32 lg:pt-40 pb-32 px-6 lg:px-10">
-      <header className="max-w-7xl mx-auto mb-24">
-        <span className="eyebrow">/02 · About · 自己紹介</span>
-        <h1 className="mt-6 display-xl max-w-5xl">
-          ten years of <br />
-          <span className="serif-accent text-zinc-500">frontends, shipped.</span>
-        </h1>
-        <p className="mt-10 body-jp max-w-2xl">
-          フロントエンドエンジニア兼ディレクターとして10年以上の経験を積み、
-          2019年よりフリーランスとして活動。2024年11月に株式会社 YO.TEC として法人化しました。
-        </p>
-      </header>
+    <>
+      <PageHero
+        eyebrow="/02 · About · 自己紹介"
+        titleTop="ten years of"
+        titleBottom="frontends, shipped."
+        description="フロントエンドエンジニア兼ディレクターとして10年以上の経験を積み、2019年よりフリーランスとして活動。2024年11月に株式会社 YO.TEC として法人化しました。"
+        bigLabel="ABOUT"
+        formation="spiral"
+        count={10}
+        cycle
+      />
+
+      <div className="pt-24 pb-32 px-6 lg:px-10">
 
       {/* Two-axis explanation */}
       <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-px border border-zinc-900/10 mb-32">
@@ -146,6 +148,7 @@ export default function AboutPage() {
           </Link>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

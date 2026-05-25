@@ -7,6 +7,7 @@ import { BootSequence } from "@/components/effects/BootSequence";
 import { CustomCursor } from "@/components/effects/CustomCursor";
 import { IdleGlitch } from "@/components/effects/IdleGlitch";
 import { ConsoleEgg } from "@/components/effects/ConsoleEgg";
+import { PageTransition } from "@/components/effects/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,7 +47,9 @@ export default function RootLayout({
         <IdleGlitch />
         <ConsoleEgg />
         <Header />
-        <main>{children}</main>
+        <main>
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>

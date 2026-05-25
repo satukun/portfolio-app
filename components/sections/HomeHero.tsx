@@ -42,9 +42,16 @@ export function HomeHero() {
       <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="absolute inset-0 dot-bg opacity-30" />
 
-      {/* 3D Cubes — right side dominant */}
+      {/* 3D Cubes — right side dominant, formation cycles */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-3/5 pointer-events-none">
-        <TexturedCubes />
+        <TexturedCubes
+          count={14}
+          initialFormation="scatter"
+          cycle
+          cycleMs={5500}
+          pointerInfluence={0.22}
+          cameraZ={7.5}
+        />
       </div>
 
       {/* Diagonal cross-line accents */}

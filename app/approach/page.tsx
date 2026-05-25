@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { AI_APPROACH } from "@/lib/data";
 import { SkillDiagram } from "@/components/sections/SkillDiagram";
 import { ProcessSequencer } from "@/components/sections/ProcessSequencer";
+import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata: Metadata = {
   title: "Approach — YO.TEC Portfolio",
@@ -13,20 +14,19 @@ export const metadata: Metadata = {
 
 export default function ApproachPage() {
   return (
-    <div className="pt-32 lg:pt-40 pb-32 px-6 lg:px-10">
-      {/* Hero */}
-      <header className="max-w-7xl mx-auto mb-24">
-        <span className="eyebrow">/03 · Approach · AI-Native Workflow</span>
-        <h1 className="mt-6 display-xl max-w-5xl">
-          claude, <br />
-          <span className="serif-accent text-zinc-500">as part of the toolchain.</span>
-        </h1>
-        <p className="mt-10 body-jp max-w-2xl">
-          {AI_APPROACH.intro}
-          <br />
-          Skills / Harness / Workflow の3軸で、属人化しがちな暗黙知を再現性のある開発基盤に変換しています。
-        </p>
-      </header>
+    <>
+      <PageHero
+        eyebrow="/03 · Approach · AI-Native Workflow"
+        titleTop="claude,"
+        titleBottom="as part of the toolchain."
+        description={`${AI_APPROACH.intro} Skills / Harness / Workflow の3軸で、属人化しがちな暗黙知を再現性のある開発基盤に変換しています。`}
+        bigLabel="APPROACH"
+        formation="tower"
+        count={8}
+        cycle
+      />
+
+      <div className="pt-24 pb-32 px-6 lg:px-10">
 
       {/* Diagram */}
       <section className="max-w-7xl mx-auto mb-32">
@@ -108,6 +108,7 @@ export default function ApproachPage() {
           </Link>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

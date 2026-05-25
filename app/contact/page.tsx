@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact — YO.TEC Portfolio",
@@ -8,16 +9,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 lg:pt-40 pb-32 px-6 lg:px-10">
-      <header className="max-w-7xl mx-auto mb-20">
-        <span className="eyebrow">/04 · Contact · お問い合わせ</span>
-        <h1 className="mt-6 display-xl">
-          let&apos;s build <br />
-          <span className="serif-accent text-zinc-500">something durable.</span>
-        </h1>
-      </header>
+    <>
+      <PageHero
+        eyebrow="/04 · Contact · お問い合わせ"
+        titleTop="let's build"
+        titleBottom="something durable."
+        description="プロジェクトのご相談、設計レビュー、技術顧問のご依頼など、お気軽にお声がけください。返信は3営業日以内を目安にしています。"
+        bigLabel="HELLO"
+        formation="ring"
+        count={6}
+        cycle
+      />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="pt-24 pb-32 px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-5">
           <p className="body-jp text-zinc-800 max-w-md">
             プロジェクトのご相談、設計レビュー、技術顧問のご依頼など、
@@ -36,7 +41,8 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
