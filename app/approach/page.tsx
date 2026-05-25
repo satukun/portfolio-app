@@ -22,7 +22,7 @@ export default function ApproachPage() {
         description={`${AI_APPROACH.intro} Skills / Harness / Workflow の3軸で、属人化しがちな暗黙知を再現性のある開発基盤に変換しています。`}
         bigLabel="APPROACH"
         formation="tower"
-        count={8}
+        count={32}
         cycle
       />
 

@@ -19,7 +19,7 @@ export default function WorksPage() {
         description="フリーランスとして参画したプロダクト案件、リードエンジニアとして完遂した受託案件、そして自社プロダクトまで。案件名・期間・体制・技術的課題と解決方法を、可能な範囲で公開しています。"
         bigLabel="WORKS"
         formation="grid"
-        count={9}
+        count={36}
         cycle
       />
 

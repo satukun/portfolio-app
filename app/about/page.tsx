@@ -20,7 +20,7 @@ export default function AboutPage() {
         description="フロントエンドエンジニア兼ディレクターとして10年以上の経験を積み、2019年よりフリーランスとして活動。2024年11月に株式会社 YO.TEC として法人化しました。"
         bigLabel="ABOUT"
         formation="spiral"
-        count={10}
+        count={40}
         cycle
       />
 

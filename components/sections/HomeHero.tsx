@@ -45,7 +45,7 @@ export function HomeHero() {
       {/* 3D Cubes — right side dominant, formation cycles */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-3/5 pointer-events-none">
         <TexturedCubes
-          count={14}
+          count={56}
           initialFormation="scatter"
           cycle
           cycleMs={5500}

@@ -17,7 +17,7 @@ export default function ContactPage() {
         description="プロジェクトのご相談、設計レビュー、技術顧問のご依頼など、お気軽にお声がけください。返信は3営業日以内を目安にしています。"
         bigLabel="HELLO"
         formation="ring"
-        count={6}
+        count={24}
         cycle
       />
 

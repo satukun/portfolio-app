@@ -41,45 +41,66 @@ function targetFor(
 ): [number, number, number] {
   switch (formation) {
     case "ring": {
-      const a = (i / count) * Math.PI * 2;
-      const r = 3;
-      return [Math.cos(a) * r, Math.sin(a) * 0.6, Math.sin(a) * r - 0.5];
+      // multi-layered concentric rings for dense counts
+      const layers = Math.max(1, Math.ceil(count / 18));
+      const layer = i % layers;
+      const idxInLayer = Math.floor(i / layers);
+      const perLayer = Math.ceil(count / layers);
+      const a = (idxInLayer / perLayer) * Math.PI * 2;
+      const r = 1.8 + layer * 0.9;
+      return [
+        Math.cos(a) * r,
+        Math.sin(a) * 0.5 + (layer - layers / 2) * 0.35,
+        Math.sin(a) * r - 0.5,
+      ];
     }
     case "spiral": {
       const t = i / count;
-      const angle = t * Math.PI * 6;
-      const r = 0.5 + t * 3;
-      return [Math.cos(angle) * r, t * 4 - 2, Math.sin(angle) * r - 0.5];
+      const turns = count > 30 ? 5 : 3;
+      const angle = t * Math.PI * 2 * turns;
+      const r = 0.3 + t * 3.4;
+      return [Math.cos(angle) * r, t * 5 - 2.5, Math.sin(angle) * r - 0.5];
     }
     case "grid": {
       const cols = Math.ceil(Math.sqrt(count));
       const rows = Math.ceil(count / cols);
       const cx = (i % cols) - (cols - 1) / 2;
       const cy = Math.floor(i / cols) - (rows - 1) / 2;
-      return [cx * 1.5, -cy * 1.5, 0];
+      const spacing = count > 30 ? 0.85 : 1.5;
+      return [cx * spacing, -cy * spacing, 0];
     }
     case "wave": {
       const cols = Math.ceil(Math.sqrt(count));
       const cx = (i % cols) - (cols - 1) / 2;
       const cy = Math.floor(i / cols) - (cols - 1) / 2;
-      return [cx * 1.4, Math.sin((i / count) * Math.PI * 4) * 1.4, cy * 1.4];
+      const spacing = count > 30 ? 0.8 : 1.4;
+      return [
+        cx * spacing,
+        Math.sin((i / count) * Math.PI * 6) * 1.6,
+        cy * spacing,
+      ];
     }
     case "tower": {
-      const stack = i % 4;
-      const ring = Math.floor(i / 4);
-      const a = (ring / Math.max(1, Math.floor(count / 4))) * Math.PI * 2;
-      const r = 1.5;
-      return [Math.cos(a) * r, stack * 1.3 - 1.5, Math.sin(a) * r - 0.5];
+      const ringsCount = Math.max(2, Math.ceil(Math.cbrt(count) * 1.6));
+      const perRing = Math.ceil(count / ringsCount);
+      const stack = Math.floor(i / perRing);
+      const idxInRing = i % perRing;
+      const a = (idxInRing / perRing) * Math.PI * 2 + stack * 0.3;
+      const r = 1.4 + (stack % 2) * 0.4;
+      return [
+        Math.cos(a) * r,
+        stack * 0.7 - (ringsCount * 0.35),
+        Math.sin(a) * r - 0.5,
+      ];
     }
     case "scatter":
     default: {
-      const angle = (i / count) * Math.PI * 2;
-      const r = 2.4 + (i % 3) * 0.6;
-      return [
-        Math.cos(angle) * r,
-        (i % 3 === 0 ? -0.8 : i % 3 === 1 ? 0.4 : 1.1) - 0.2,
-        Math.sin(angle) * r - 0.4,
-      ];
+      // pseudo-random scatter using golden angle
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      const angle = i * golden;
+      const r = 1.5 + ((i * 1.7) % 2.5);
+      const y = ((i * 0.6) % 3.4) - 1.7;
+      return [Math.cos(angle) * r, y, Math.sin(angle) * r - 0.5];
     }
   }
 }
@@ -181,7 +202,7 @@ function Scene({
     return Array.from({ length: count }, (_, i) => {
       return {
         texturePath: TEXTURE_PATHS[i % TEXTURE_PATHS.length],
-        scale: 0.6 + ((i % 5) * 0.18),
+        scale: 0.3 + ((i % 5) * 0.09),
         rotationSpeed: [
           0.05 + (i % 4) * 0.04,
           0.07 + (i % 3) * 0.05,
