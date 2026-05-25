@@ -1,16 +1,20 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MagneticChars } from "@/components/effects/MagneticChars";
 
+const TexturedCubes = dynamic(
+  () => import("@/components/three/TexturedCubes").then((m) => m.TexturedCubes),
+  { ssr: false }
+);
+
 const CODE_LINES = [
-  "const portfolio = {",
-  "  by: 'Yosuke Sato',",
-  "  for: 'YO.TEC',",
-  "  since: 2008,",
-  "  craft: 'the craft behind the system.',",
-  "};",
+  "$ git log --since 2008 --author 'yosuke.sato'",
+  "→ 14 shipped · 3 contracts · 1 incorporation",
+  "→ stack: next.js · react · ts · claude-skills",
+  "→ tagline:",
 ];
 
 export function HomeHero() {
@@ -28,133 +32,180 @@ export function HomeHero() {
       i += 1;
       setTimeout(tick, 220);
     };
-    const t = setTimeout(tick, 900);
+    const t = setTimeout(tick, 700);
     return () => clearTimeout(t);
   }, []);
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#fafaf9]">
-      {/* Grid bg */}
+      {/* Background grid + dot composite */}
       <div className="absolute inset-0 grid-bg opacity-50" />
+      <div className="absolute inset-0 dot-bg opacity-30" />
 
-      {/* Corner marks */}
-      <div className="pointer-events-none absolute inset-0">
-        {[
-          "top-6 left-6 border-l border-t",
-          "top-6 right-6 border-r border-t",
-          "bottom-6 left-6 border-l border-b",
-          "bottom-6 right-6 border-r border-b",
-        ].map((p) => (
-          <span
-            key={p}
-            className={`absolute w-4 h-4 ${p} border-zinc-900/40`}
-          />
-        ))}
+      {/* 3D Cubes — right side dominant */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-3/5 pointer-events-none">
+        <TexturedCubes />
       </div>
 
-      <div className="relative min-h-screen flex flex-col px-6 lg:px-10 pt-32 pb-12">
-        {/* Top meta */}
-        <div className="flex justify-between items-start">
+      {/* Diagonal cross-line accents */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-0 w-full h-full"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
+      >
+        <line x1="0" y1="22" x2="100" y2="22" stroke="rgba(17,17,17,0.08)" strokeWidth="0.1" />
+        <line x1="0" y1="78" x2="100" y2="78" stroke="rgba(17,17,17,0.08)" strokeWidth="0.1" />
+        <line x1="38" y1="0" x2="38" y2="100" stroke="rgba(17,17,17,0.08)" strokeWidth="0.1" />
+      </svg>
+
+      {/* Vertical index (left rail) */}
+      <div className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 flex-col items-center gap-6">
+        <span className="mono text-[0.55rem] tracking-[0.3em] uppercase text-zinc-500 [writing-mode:vertical-rl] rotate-180">
+          portfolio · index · 2026
+        </span>
+        <span className="block w-px h-24 bg-zinc-900/30" />
+        <span className="mono text-[0.55rem] tracking-[0.3em] uppercase text-zinc-500">
+          /00
+        </span>
+      </div>
+
+      <div className="relative min-h-screen flex flex-col px-6 lg:px-16 pt-32 pb-12">
+        {/* Top row: eyebrow + coords */}
+        <div className="flex justify-between items-start mb-12">
           <motion.p
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mono text-[0.65rem] tracking-[0.25em] uppercase text-zinc-700"
           >
-            [ frontend / direction / ai-native workflow ]
+            [ frontend · direction · ai-native ]
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="mono text-[0.65rem] tracking-[0.25em] uppercase text-zinc-700 text-right hidden sm:block"
+            className="mono text-[0.6rem] tracking-[0.2em] uppercase text-zinc-700 text-right"
           >
-            <p>N 35.6762°</p>
-            <p>E 139.6503°</p>
+            <p>14 / shipped</p>
+            <p className="text-zinc-400">since 2008.01</p>
           </motion.div>
         </div>
 
-        {/* Code typing */}
-        <div className="mt-12 lg:mt-16 mono text-[0.7rem] lg:text-xs text-zinc-500 leading-[2] max-w-2xl">
+        {/* Big numeric overlay */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1.2 }}
+          aria-hidden
+          className="pointer-events-none absolute left-6 lg:left-16 top-[20vh] mono text-zinc-900/[0.05] font-light leading-none select-none"
+          style={{ fontSize: "clamp(15rem, 38vw, 38rem)" }}
+        >
+          <span className="block">14</span>
+        </motion.div>
+
+        {/* Code rail */}
+        <div className="mono text-[0.7rem] text-zinc-500 leading-[2] max-w-xl mb-auto">
           {typed.map((line, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0 }}
-              animate={{ opacity: reveal ? 0.25 : 1 }}
+              animate={{ opacity: reveal ? 0.35 : 1 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-zinc-300 mr-4">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-zinc-300 mr-3">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               {line}
             </motion.div>
           ))}
           {!reveal && (
             <span className="inline-block">
-              <span className="text-zinc-300 mr-4">{String(typed.length + 1).padStart(2, "0")}</span>
+              <span className="text-zinc-300 mr-3">
+                {String(typed.length + 1).padStart(2, "0")}
+              </span>
               <span className="blink">▌</span>
             </span>
           )}
         </div>
 
-        {/* Hero tagline */}
-        <div className="flex-1 flex items-center mt-8">
+        {/* Tagline — anchored bottom-left, asymmetric */}
+        <div className="mt-12 lg:mt-0 max-w-[min(56rem,55vw)]">
           {reveal && (
-            <div className="max-w-5xl">
-              <motion.h1
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                className="display-mega"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <h1
+                className="display-mega whitespace-nowrap"
+                style={{ fontSize: "clamp(2.75rem, 7.4vw, 8rem)" }}
               >
                 <span className="block">
                   <MagneticChars text="the craft" />
                 </span>
-                <span className="block">
-                  <MagneticChars text="behind the" />
+                <span className="block pl-[10%]">
+                  <MagneticChars text="behind" />
                 </span>
-                <span className="block serif-accent text-zinc-500">
-                  <MagneticChars text="system." />
+                <span className="block serif-accent text-zinc-500 pl-[22%]">
+                  <MagneticChars text="the system." />
                 </span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
+              </h1>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.8 }}
-                className="mt-10 max-w-md body-jp"
+                transition={{ delay: 1.0, duration: 0.8 }}
+                className="mt-10 flex items-start gap-10 flex-wrap"
               >
-                システムの裏側に、クラフトがある。
-                <br />
-                10年以上のフロントエンドと、AIを前提とした開発基盤の設計。
-              </motion.p>
-            </div>
+                <p className="body-jp max-w-xs">
+                  システムの裏側に、クラフトがある。
+                  <br />
+                  10年以上のフロントエンドと、AIを前提とした開発基盤の設計。
+                </p>
+                <div className="mono text-[0.6rem] tracking-[0.3em] uppercase text-zinc-500 leading-[2]">
+                  <p>株式会社 YO.TEC</p>
+                  <p>Yosuke Sato</p>
+                  <p className="text-zinc-400">portfolio_v2026.05</p>
+                </div>
+              </motion.div>
+            </motion.div>
           )}
         </div>
 
-        {/* Bottom meta */}
-        <div className="flex justify-between items-end mt-12">
+        {/* Bottom rail: stat strip + scroll */}
+        <div className="mt-16 grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-6 border-t border-zinc-900/10 pt-8">
+          <Stat label="Contracts" value="09" />
+          <Stat label="Outsourcing" value="50+" />
+          <Stat label="In-house" value="02" />
+          <Stat label="Career" value="18yr" />
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="mono text-[0.65rem] tracking-[0.25em] uppercase text-zinc-700"
+            transition={{ delay: 1.6, duration: 0.8 }}
+            className="hidden lg:flex flex-col items-end justify-self-end gap-3"
           >
-            <p>株式会社 YO.TEC / Yosuke Sato</p>
-            <p className="mt-1 text-zinc-500">portfolio_v2026.05</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="flex flex-col items-center gap-3"
-          >
-            <span className="mono text-[0.65rem] tracking-[0.3em] uppercase text-zinc-700">
-              Scroll
+            <span className="mono text-[0.55rem] tracking-[0.3em] uppercase text-zinc-700">
+              scroll ↓
             </span>
-            <span className="block w-px h-12 relative overflow-hidden bg-zinc-900/30">
-              <span className="absolute top-0 left-0 w-full h-4 scroll-hint bg-zinc-900" />
+            <span className="block w-px h-10 relative overflow-hidden bg-zinc-900/30">
+              <span className="absolute top-0 left-0 w-full h-3 scroll-hint bg-zinc-900" />
             </span>
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="display-l text-zinc-900" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}>
+        {value}
+      </p>
+      <p className="mt-1 mono text-[0.55rem] tracking-[0.3em] uppercase text-zinc-500">
+        {label}
+      </p>
+    </div>
   );
 }

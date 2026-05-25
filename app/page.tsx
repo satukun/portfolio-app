@@ -49,7 +49,10 @@ export default function HomePage() {
             <div className="md:col-span-7">
               <span className="eyebrow">Works · 開発実績</span>
               <h2 className="mt-6 display-xl">
-                selected <span className="serif-accent text-zinc-500">projects.</span>
+                <span className="block">selected</span>
+                <span className="block serif-accent text-zinc-500 pl-[20%]">
+                  projects.
+                </span>
               </h2>
             </div>
             <p className="md:col-span-5 text-zinc-600 text-sm leading-[1.9]">
@@ -93,7 +96,10 @@ export default function HomePage() {
             <div>
               <span className="eyebrow">Capabilities · 提供できる役割</span>
               <h2 className="mt-6 display-xl">
-                what i <span className="serif-accent text-zinc-500">bring.</span>
+                <span className="block">what i</span>
+                <span className="block serif-accent text-zinc-500 pl-[15%]">
+                  bring.
+                </span>
               </h2>
             </div>
             <p className="text-zinc-600 text-sm max-w-sm leading-[1.9]">
