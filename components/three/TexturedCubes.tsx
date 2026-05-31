@@ -202,7 +202,7 @@ function Scene({
     return Array.from({ length: count }, (_, i) => {
       return {
         texturePath: TEXTURE_PATHS[i % TEXTURE_PATHS.length],
-        scale: 0.3 + ((i % 5) * 0.09),
+        scale: 0.15 + ((i % 5) * 0.045),
         rotationSpeed: [
           0.05 + (i % 4) * 0.04,
           0.07 + (i % 3) * 0.05,

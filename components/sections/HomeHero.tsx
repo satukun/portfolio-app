@@ -146,7 +146,7 @@ export function HomeHero() {
             >
               <h1
                 className="display-mega whitespace-nowrap"
-                style={{ fontSize: "clamp(2.75rem, 7.4vw, 8rem)" }}
+                style={{ fontSize: "clamp(2rem, 5.2vw, 5rem)" }}
               >
                 <span className="block">
                   <MagneticChars text="the craft" />
@@ -207,7 +207,7 @@ export function HomeHero() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="display-l text-zinc-900" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}>
+      <p className="display-l text-zinc-900" style={{ fontSize: "clamp(1.4rem, 2.4vw, 2rem)" }}>
         {value}
       </p>
       <p className="mt-1 mono text-[0.55rem] tracking-[0.3em] uppercase text-zinc-500">

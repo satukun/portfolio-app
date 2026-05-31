@@ -99,7 +99,7 @@ export function PageHero({
           <span className="eyebrow">{eyebrow}</span>
           <h1
             className="mt-6 display-xl max-w-3xl"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
+            style={{ fontSize: "clamp(1.9rem, 4.5vw, 4rem)" }}
           >
             <span className="block">{titleTop}</span>
             <span className="block serif-accent text-zinc-500 pl-[14%]">
